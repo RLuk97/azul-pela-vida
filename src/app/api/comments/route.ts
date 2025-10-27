@@ -16,7 +16,12 @@ function toComment(row: any): Comment {
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const onlyApproved = searchParams.get("onlyApproved") !== "false"; // default true
-  const hasDb = !!process.env.DATABASE_URL;
+  const hasDb = !!(
+    process.env.DATABASE_URL ||
+    process.env.POSTGRES_URL ||
+    process.env.POSTGRES_URL_NON_POOLING ||
+    process.env.POSTGRES_PRISMA_URL
+  );
 
   if (!hasDb) {
     // Fallback: nenhum DATABASE_URL; ambiente local sem DB
@@ -36,7 +41,12 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const hasDb = !!process.env.DATABASE_URL;
+  const hasDb = !!(
+    process.env.DATABASE_URL ||
+    process.env.POSTGRES_URL ||
+    process.env.POSTGRES_URL_NON_POOLING ||
+    process.env.POSTGRES_PRISMA_URL
+  );
   if (!hasDb) {
     return NextResponse.json({ error: "DATABASE_URL não configurada" }, { status: 500 });
   }
