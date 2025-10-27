@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f0f7ff; /* azul muito claro */
+  --foreground: #0b1b33; /* azul escuro para texto */
+  color-scheme: light; /* força controles e tema claro */
 }
 
 @theme inline {
@@ -12,15 +13,18 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Form controls: alto contraste independente do tema do navegador */
+input, textarea, select {
+  background-color: #ffffff;
+  color: #0b1b33;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #5b7da6; /* azul médio para placeholder visível */
 }
