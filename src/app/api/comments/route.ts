@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+export const runtime = "nodejs";
 import type { Comment } from "@/domain/comment";
 import { getPool, ensureCommentsTable } from "@/lib/db";
 
