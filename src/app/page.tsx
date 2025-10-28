@@ -4,7 +4,6 @@ import RealData from "@/components/RealData";
 import Importance from "@/components/Importance";
 import SupportCounter from "@/components/SupportCounter";
 import CommentForm from "@/components/CommentForm";
-import CommentList from "@/components/CommentList";
 
 export default function Home() {
   return (
@@ -18,14 +17,10 @@ export default function Home() {
 
         <SupportCounter />
 
-        <section id="apoio" className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="space-y-3">
-            <h2 className="text-2xl font-semibold tracking-tight text-blue-900">Deixe sua mensagem</h2>
+        <section id="apoio" className="w-full">
+          <div className="mx-auto w-full md:max-w-2xl space-y-3">
+            <h2 className="text-2xl font-semibold tracking-tight text-blue-900 text-center">Deixe sua mensagem</h2>
             <CommentForm />
-          </div>
-          <div className="space-y-3">
-            <h2 className="text-2xl font-semibold tracking-tight text-blue-900">Mensagens da comunidade</h2>
-            <CommentList />
           </div>
         </section>
       </main>

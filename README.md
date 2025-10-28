@@ -1,49 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Azul Pela Vida — Site/Blog de Ação Social (Novembro Azul)
 
-# Azul Pela Vida — Novembro Azul
+O Azul Pela Vida é um site/blog de ação social dedicado à conscientização sobre o câncer de próstata, alinhado ao movimento Novembro Azul. Ele reúne informação confiável, incentiva o cuidado em saúde e dá voz à comunidade por meio de mensagens de apoio que aparecem automaticamente em um carrossel contínuo.
 
-App com frontend e backend (API routes) para mensagens de apoio.
+## Objetivo
 
-## Getting Started
+- Conectar pessoas em torno de uma causa de saúde pública.
+- Incentivar a prevenção e o cuidado por meio de conteúdo educativo.
+- Facilitar que a comunidade deixe mensagens de apoio, visíveis em tempo real.
 
-First, run the development server:
+## Principais recursos
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Carrossel contínuo de mensagens com espaçamento uniforme e velocidade configurável.
+- Formulário “Deixe sua mensagem” centralizado e simples de usar.
+- Contador em tempo real de mensagens aprovadas.
+- Conteúdo educativo sobre prevenção, dados e importância do cuidado.
+- Backend com API routes para persistência de comentários em Postgres.
+- Fallback automático para `localStorage` em desenvolvimento sem banco de dados.
+- Site responsivo, leve e sem anúncios.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Stack técnica
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js (App Router) e React.
+- Tailwind CSS v4.
+- API Routes com runtime `nodejs` para integração com Postgres.
+- `pg` para conexão com banco (Neon/Supabase/Render/Vercel Postgres).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Como rodar localmente
 
-## Deploy (GitHub → Vercel)
+1. Instale dependências: `npm install`.
+2. Inicie o servidor: `npm run dev`.
+3. Abra `http://localhost:3000`.
 
-1. Crie um repositório no GitHub e faça push da pasta `azul-pela-vida`.
-2. No Vercel, clique em "New Project" → importe o repo.
-3. Configure as variáveis de ambiente:
-   - `NEXT_PUBLIC_USE_SERVER` = `true` (frontend usa o backend `/api/comments`).
-   - `DATABASE_URL` = URL da sua base Postgres (Neon/Supabase/Render etc.).
-4. Deploy.
+Sem `DATABASE_URL`, o app usa `localStorage` apenas no navegador. Para testar o fluxo completo de backend, configure as variáveis abaixo.
 
-### Persistência de comentários
+## Variáveis de ambiente
 
-- **Dev/local:** usa `localStorage` (persistente apenas no navegador).
-- **Produção:** API `/api/comments` salva em Postgres via `DATABASE_URL`.
+- `NEXT_PUBLIC_USE_SERVER`: `true` para usar o backend `/api/comments`; `false` para fallback local.
+- `DATABASE_URL` ou uma das alternativas reconhecidas (`POSTGRES_URL`, `POSTGRES_URL_NON_POOLING`, `POSTGRES_PRISMA_URL`): string de conexão Postgres.
 
-Para armazenamento permanente, integre um serviço:
+Em produção (Vercel), o arquivo `src/app/api/comments/route.ts` define `export const runtime = "nodejs"` para garantir compatibilidade com o driver `pg`.
 
-- **Vercel KV** (Redis gerenciado): pacote `@vercel/kv` e variáveis `KV_REST_API_URL`, `KV_REST_API_TOKEN`.
-- **Postgres** (Neon/Supabase): base gratuita, conectar via client.
+## Banco de dados e persistência
 
-### Esquema da tabela
+Tabela usada: `comments`.
 
 ```sql
 CREATE TABLE IF NOT EXISTS comments (
@@ -56,22 +55,32 @@ CREATE TABLE IF NOT EXISTS comments (
 CREATE INDEX IF NOT EXISTS comments_created_at_idx ON comments(created_at);
 ```
 
-Obs.: o projeto cria a tabela automaticamente ao receber requisições, se ela não existir.
+- Criação automática: ao receber requisições, o backend cria a tabela e índice caso não existam.
+- Aprovação: por padrão, os comentários são inseridos com `approved = true`. O carrossel e contadores consideram apenas os aprovados (padrão pode ser alterado via query `onlyApproved=false`).
 
+## Deploy (GitHub → Vercel)
+
+1. Crie/importa o repositório no GitHub.
+2. No Vercel, "New Project" → importe o repo.
+3. Defina as variáveis de ambiente:
+   - `NEXT_PUBLIC_USE_SERVER` = `true`
+   - `DATABASE_URL` = URL da base Postgres (Neon/Supabase/Render/Vercel Postgres)
+4. Faça o deploy.
+
+## Customizações úteis
+
+- Velocidade do carrossel: ajuste `--ticker-duration` em `src/app/globals.css`.
+- Espaçamento entre mensagens: ajuste `--ticker-gap` em `src/app/globals.css`.
+- Largura do formulário: mude a `max-w` no container do formulário em `src/app/page.tsx`.
+
+## Contribuição
+
+- Issues e PRs são bem-vindos. Mantenha o foco em acessibilidade, performance e clareza das mensagens.
+
+## Segurança e privacidade
+
+- Não solicite dados sensíveis. As mensagens são públicas por padrão; ajuste o fluxo de aprovação conforme necessário.
 
 ---
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Este projeto começou com [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) e foi adaptado para o propósito de ação social.

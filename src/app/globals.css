@@ -28,3 +28,51 @@ input, textarea, select {
 input::placeholder, textarea::placeholder {
   color: #5b7da6; /* azul médio para placeholder visível */
 }
+
+/* --- Ticker de mensagens (marquee) --- */
+.ticker {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  height: 2.6rem; /* garante área visível do ticker */
+  /* controles padrão do ticker */
+  --ticker-duration: 90s; /* mais lento */
+  --ticker-gap: 2.75rem; /* mais espaço entre mensagens */
+}
+.ticker-track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-flex;
+  gap: var(--ticker-gap); /* espaçamento entre mensagens */
+  padding-left: var(--ticker-gap);
+  padding-right: var(--ticker-gap);
+  min-width: max-content; /* largura baseada no conteúdo para loop perfeito */
+  will-change: transform;
+  animation: marquee var(--ticker-duration) linear infinite;
+}
+.ticker-track-2 {
+  animation-name: marquee2;
+  animation-duration: var(--ticker-duration);
+}
+.ticker-item {
+  color: #0b1b33;
+  background: #f0f7ff;
+  border: 1px solid #cfe1ff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+@keyframes marquee2 {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(0); }
+}
