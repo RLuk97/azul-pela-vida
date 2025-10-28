@@ -39,6 +39,7 @@ Sem `DATABASE_URL`, o app usa `localStorage` apenas no navegador. Para testar o 
 
 - `NEXT_PUBLIC_USE_SERVER`: `true` para usar o backend `/api/comments`; `false` para fallback local.
 - `DATABASE_URL` ou uma das alternativas reconhecidas (`POSTGRES_URL`, `POSTGRES_URL_NON_POOLING`, `POSTGRES_PRISMA_URL`): string de conexão Postgres.
+- `NEXT_PUBLIC_TICKER_DURATION`: duração do carrossel de mensagens. Exemplos: `185s`, `200s`. Também aceita apenas números (segundos), como `185`, ou milissegundos como `200000ms`. Valores inválidos caem no padrão `185s`.
 
 Em produção (Vercel), o arquivo `src/app/api/comments/route.ts` define `export const runtime = "nodejs"` para garantir compatibilidade com o driver `pg`.
 
@@ -71,17 +72,19 @@ CREATE INDEX IF NOT EXISTS comments_created_at_idx ON comments(created_at);
 
 ## Customizações úteis
 
-- Velocidade do carrossel: ajuste `--ticker-duration` em `src/app/globals.css` (valor atual: `185s`).
+- Velocidade do carrossel: defina por env `NEXT_PUBLIC_TICKER_DURATION` (tem precedência) ou ajuste `--ticker-duration` em `src/app/globals.css` (valor atual: `185s`).
 - Espaçamento entre mensagens: ajuste `--ticker-gap` em `src/app/globals.css`.
 - Largura do formulário: mude a `max-w` no container do formulário em `src/app/page.tsx`.
 
 ## Observações de deploy
 
 - Após cada deploy no Vercel, faça um hard refresh no navegador (`Ctrl+F5`) para garantir que o CSS atualizado não esteja em cache.
+- Alterar `NEXT_PUBLIC_TICKER_DURATION` em produção exige novo deploy para refletir no SSR. Em desenvolvimento, reinicie o servidor se mudar a env.
 
 ## Changelog
 
 - Atualização: velocidade do ticker ajustada para `185s` para experiência mais suave em produção.
+- Feat: duração do ticker agora configurável via env `NEXT_PUBLIC_TICKER_DURATION`.
 
 ## Contribuição
 
