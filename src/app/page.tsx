@@ -4,9 +4,7 @@ import RealData from "@/components/RealData";
 import Importance from "@/components/Importance";
 import SupportCounter from "@/components/SupportCounter";
 import CommentForm from "@/components/CommentForm";
-import MythsFacts from "@/components/MythsFacts";
-import FAQ from "@/components/FAQ";
-import RealStories from "@/components/RealStories";
+import { MythsFacts, FAQ, RealStories } from "@/components";
 
 export default function Home() {
   return (
