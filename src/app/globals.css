@@ -19,6 +19,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Oculta a barra de rolagem, mantendo a rolagem funcional */
+html, body {
+  -ms-overflow-style: none; /* IE e Edge antigo */
+  scrollbar-width: none;   /* Firefox */
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none;           /* Chrome, Safari, Edge moderno */
+}
+
 /* Form controls: alto contraste independente do tema do navegador */
 input, textarea, select {
   background-color: #ffffff;
