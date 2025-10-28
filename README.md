@@ -28,8 +28,10 @@ O Azul Pela Vida é um site/blog de ação social dedicado à conscientização 
 ## Como rodar localmente
 
 1. Instale dependências: `npm install`.
-2. Inicie o servidor: `npm run dev`.
-3. Abra `http://localhost:3000`.
+2. Inicie o servidor: `npm run dev -- -p 3001`.
+3. Abra `http://localhost:3001`.
+
+Se preferir outra porta, ajuste o parâmetro `-p`.
 
 Sem `DATABASE_URL`, o app usa `localStorage` apenas no navegador. Para testar o fluxo completo de backend, configure as variáveis abaixo.
 
@@ -69,9 +71,17 @@ CREATE INDEX IF NOT EXISTS comments_created_at_idx ON comments(created_at);
 
 ## Customizações úteis
 
-- Velocidade do carrossel: ajuste `--ticker-duration` em `src/app/globals.css`.
+- Velocidade do carrossel: ajuste `--ticker-duration` em `src/app/globals.css` (valor atual: `185s`).
 - Espaçamento entre mensagens: ajuste `--ticker-gap` em `src/app/globals.css`.
 - Largura do formulário: mude a `max-w` no container do formulário em `src/app/page.tsx`.
+
+## Observações de deploy
+
+- Após cada deploy no Vercel, faça um hard refresh no navegador (`Ctrl+F5`) para garantir que o CSS atualizado não esteja em cache.
+
+## Changelog
+
+- Atualização: velocidade do ticker ajustada para `185s` para experiência mais suave em produção.
 
 ## Contribuição
 

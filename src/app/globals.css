@@ -42,7 +42,7 @@ input::placeholder, textarea::placeholder {
   position: relative;
   height: 2.6rem; /* garante área visível do ticker */
   /* controles padrão do ticker */
-  --ticker-duration: 165s; /* ligeiramente mais lento para suavizar em produção */
+  --ticker-duration: 185s; /* ligeiramente mais lento para suavizar em produção */
   --ticker-gap: 2.75rem; /* mais espaço entre mensagens */
 }
 .ticker-track {
