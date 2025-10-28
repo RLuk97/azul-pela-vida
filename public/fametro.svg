@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 838 223" role="img" aria-label="Grupo FAMETRO">
+  <title>Grupo FAMETRO</title>
+  <rect width="838" height="223" fill="none"/>
+  <!-- Texto superior "GRUPO" -->
+  <text x="12" y="36" font-size="30" font-weight="700" fill="#1b75bb" font-family="Arial, Helvetica, sans-serif">GRUPO</text>
+  <!-- Logotipo tipográfico aproximado: "FA" em vermelho e "METRO" em azul -->
+  <text x="10" y="150" font-size="120" font-weight="800" fill="#e7302a" letter-spacing="-3" font-family="Arial Black, Arial, Helvetica, sans-serif">FA</text>
+  <text x="230" y="150" font-size="120" font-weight="800" fill="#1b75bb" letter-spacing="-3" font-family="Arial Black, Arial, Helvetica, sans-serif">METRO</text>
+  <!-- Arco superior estilizado -->
+  <path d="M 210 40 Q 380 30 560 70 Q 720 110 820 90" fill="none" stroke="#1b75bb" stroke-width="12" stroke-linecap="round"/>
+  <!-- Ponto no fim do arco -->
+  <circle cx="820" cy="90" r="8" fill="#1b75bb"/>
+</svg>
