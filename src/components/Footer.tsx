@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="relative mx-auto max-w-5xl px-6 py-6 text-center text-sm text-blue-700">
         {/* Logo à esquerda, mantendo o texto centralizado */}
         <img
-          src="/FAMETRO.png"
+          src="/FAMETRO (1).svg"
           alt="Grupo FAMETRO"
           className="hidden sm:block absolute left-6 top-1/2 -translate-y-1/2 h-8 w-auto object-contain"
         />
