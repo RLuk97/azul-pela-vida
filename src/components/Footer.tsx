@@ -8,7 +8,8 @@ export default function Footer() {
           alt="Grupo FAMETRO"
           className="hidden sm:block absolute left-6 top-1/2 -translate-y-1/2 h-8 w-auto object-contain"
         />
-        Azul Pela Vida • Novembro Azul • Fontes: INCA, IARC/WHO
+        <p>Azul Pela Vida • Novembro Azul • Fontes: INCA, IARC/WHO</p>
+        <p className="mt-1">Desenvolvido pela turma Sistema de informações - 8° Período (SIS221N01ZL)</p>
       </div>
     </footer>
   );
