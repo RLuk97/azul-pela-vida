@@ -51,7 +51,9 @@ input::placeholder, textarea::placeholder {
   top: 0;
   display: inline-flex;
   gap: var(--ticker-gap); /* espaçamento entre mensagens */
-  padding-left: var(--ticker-gap);
+  /* Mantém somente o padding à direita para que a junção entre trilhas
+     tenha exatamente o mesmo espaçamento definido em --ticker-gap. */
+  padding-left: 0;
   padding-right: var(--ticker-gap);
   min-width: max-content; /* largura baseada no conteúdo para loop perfeito */
   will-change: transform;
