@@ -97,3 +97,5 @@ CREATE INDEX IF NOT EXISTS comments_created_at_idx ON comments(created_at);
 ---
 
 Este projeto começou com [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) e foi adaptado para o propósito de ação social.
+---
+Desenvolvido por Ryan Lucas
